@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load booking_extras %}
+
+<div class="container my-5">
+
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-gradient">
+            🏝 Book Your Stay at {{ resort.name }}
+        </h2>
+        <p class="text-muted fs-5">
+            📍 {{ resort.location }}
+        </p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+
+            <div class="card booking-card shadow-lg border-0">
+                <div class="card-body p-4">
+
+                    <h5 class="text-center fw-bold mb-4 text-success">
+                        Booking Details
+                    </h5>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="pricePerNight" value="{{ resort.price_per_night }}">
+                        <input type="hidden" id="discountPercent" value="{{ discount_percent }}">
+
+                        <!-- Booking Form -->
+                        <div class="booking-form mb-3">
+                            {{ form.check_in }}
+                            {{ form.check_out }}
+                            
+                            {% if available_rooms == 0 %}
+<div class="alert alert-danger mt-3 text-center">
+    ❌ No rooms available for selected dates
+</div>
+{% else %}
+<div class="alert alert-info mt-3 text-center">
+    ✅ {{ available_rooms }} room(s) available
+</div>
+{% endif %}
+
+                        </div>
+                        
+
+                        <!-- Pricing Info -->
+                       <!-- Price Breakdown -->
+<div class="price-card p-4 rounded mt-4">
+
+    <h6 class="fw-bold text-success mb-3">💵 Price Breakdown</h6>
+
+    <div class="d-flex justify-content-between">
+        <span>Room Price / Night</span>
+        <strong>₹{{ resort.price_per_night }}</strong>
+    </div>
+
+    <div class="d-flex justify-content-between mt-2">
+        <span>Number of Days</span>
+        <strong id="daysCount">0</strong>
+    </div>
+
+    <div class="mb-3">
+    <label class="form-label fw-semibold">
+        🏨 Number of Rooms
+    </label>
+
+    <select name="room_count"
+            id="id_room_count"
+            class="form-select"
+            required>
+
+        <option value="">Select rooms</option>
+
+        {% for i in 1|to:available_rooms %}
+            <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+    </select>
+
+    <small class="text-muted">
+        Available rooms: {{ available_rooms }}
+    </small>
+</div>
+
+
+    <hr>
+
+    <div class="d-flex justify-content-between text-danger">
+        <span>Original Amount</span>
+        <strong>₹<span id="originalAmount">0</span></strong>
+    </div>
+
+    <div class="d-flex justify-content-between text-success mt-2">
+        <span>Discount ({{ discount_percent }}%)</span>
+        <strong>- ₹<span id="discountAmount">0</span></strong>
+    </div>
+
+    <hr>
+
+    <div class="d-flex justify-content-between fs-5 fw-bold">
+        <span>✅ Final Payable Amount</span>
+        <span class="text-success">
+            ₹<span id="finalAmount">0</span>
+        </span>
+    </div>
+</div>
+
+
+                        </div>
+
+                        <!-- Offer Banner -->
+                        <div class="alert alert-success text-center mt-4 offer-banner">
+                            🎊 <strong>New Year Special Offer</strong><br>
+                            Flat {{ discount_percent }}% OFF on your stay!
+                        </div>
+
+                        <!-- Submit -->
+                        <button class="btn btn-success w-100 mt-4 booking-btn">
+                            🔍 Check Availability & Book
+                        </button>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Styling -->
+<style>
+.text-gradient {
+    background: linear-gradient(90deg, #198754, #20c997);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.booking-card {
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.booking-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+}
+
+.booking-form p {
+    margin-bottom: 1rem;
+}
+
+.booking-form input,
+.booking-form select {
+    border-radius: 12px;
+    padding: 10px 14px;
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+}
+
+.price-card {
+    background: #f8fdfb;
+    border: 1px dashed #20c997;
+}
+
+.offer-banner {
+    border-radius: 16px;
+    font-size: 1rem;
+}
+
+.booking-btn {
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.booking-btn:hover {
+    transform: scale(1.04);
+}
+</style>
+<script>
+function calculatePrice() {
+    const checkIn = document.getElementById("id_check_in").value;
+    const checkOut = document.getElementById("id_check_out").value;
+    const roomCount = document.getElementById("id_room_count").value;
+
+    if (!checkIn || !checkOut || !roomCount) {
+        return;
+    }
+
+    const pricePerNight = parseFloat(document.getElementById("pricePerNight").value);
+    const discountPercent = parseFloat(document.getElementById("discountPercent").value);
+
+    const inDate = new Date(checkIn);
+    const outDate = new Date(checkOut);
+
+    const diffTime = outDate - inDate;
+    const days = diffTime / (1000 * 60 * 60 * 24);
+
+    if (days <= 0) {
+        return;
+    }
+
+    const originalAmount = days * roomCount * pricePerNight;
+    const discountAmount = (originalAmount * discountPercent) / 100;
+    const finalAmount = originalAmount - discountAmount;
+
+    document.getElementById("daysCount").innerText = days;
+    document.getElementById("originalAmount").innerText = originalAmount.toFixed(2);
+    document.getElementById("discountAmount").innerText = discountAmount.toFixed(2);
+    document.getElementById("finalAmount").innerText = finalAmount.toFixed(2);
+}
+
+// Trigger recalculation
+document.addEventListener("change", calculatePrice);
+document.addEventListener("keyup", calculatePrice);
+</script>
+
+
+{% endblock %}

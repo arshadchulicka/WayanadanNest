@@ -1,0 +1,505 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-image: url("../images/bgimg.jpg");
+    background-size: cover;          /* Full screen */
+    background-repeat: no-repeat;    /* No tiling */
+    background-position: center;     /* Center image */
+    background-attachment: fixed;    /* Permanent background */
+}
+
+/* GLOBAL PAGE CONTENT BACKGROUND */
+.page-bg {
+    min-height: calc(100vh - 120px); /* adjust if navbar/footer height differs */
+    background-image: url("/static/images/nature-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    border-radius: 20px;
+    padding: 30px;
+    .page-bg {
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+}
+
+/* Optional overlay for readability */
+.page-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    z-index: 0;
+}
+
+.page-bg > * {
+    position: relative;
+    z-index: 1;
+}
+
+.carousel-img {
+    height: 80vh;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    background: rgba(0,0,0,0.4);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .carousel-img {
+        height: 50vh;
+    }
+}
+/* Card Design */
+.resort-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    transition: all 0.4s ease;
+}
+
+.resort-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.2);
+}
+
+/* Image */
+.resort-img {
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.resort-card:hover .resort-img {
+    transform: scale(1.05);
+}
+
+/* Discount Badge */
+.discount-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(45deg, #ffc107, #ff9800);
+    color: #000;
+    padding: 6px 12px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Description */
+.resort-desc {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Price Box */
+.price-box {
+    background: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 10px;
+}
+
+/* Rating */
+.rating {
+    color: #ff9800;
+    font-weight: 600;
+}
+
+/* Button Animation */
+.btn-success {
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(25,135,84,0.5);
+}
+        body {
+    padding-top: 80px;
+}
+
+/* Navbar styling */
+.navbar-custom {
+    background: linear-gradient(
+        90deg,
+        rgba(25, 135, 84, 0.95),
+        rgba(20, 108, 67, 0.95)
+    );
+    backdrop-filter: blur(8px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Brand */
+.navbar-custom .navbar-brand {
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+}
+
+/* Links */
+.navbar-custom .nav-link {
+    color: #ffffff;
+    font-weight: 500;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+.navbar-custom .nav-link:hover {
+    color: #ffc107;
+}
+
+/* Buttons hover animation */
+.navbar-custom .btn {
+    transition: all 0.3s ease;
+}
+
+.navbar-custom .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Mobile tweaks */
+@media (max-width: 991px) {
+    .navbar-nav {
+        padding-top: 15px;
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 8px;
+    }
+}
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Main content card feel */
+.page-wrapper {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+}
+
+/* Messages */
+.alert {
+    border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    background: #0f5132;
+    color: #ffffff;
+    margin-top: 60px;
+}
+
+footer a {
+    color: #d1e7dd;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ffffff;
+}
+
+/* Buttons */
+.btn-success {
+    background: linear-gradient(135deg, #198754, #157347);
+    border: none;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #157347, #0f5132);
+}
+
+/* Mobile spacing */
+@media (max-width: 768px) {
+    .page-wrapper {
+        padding: 15px;
+    }
+}
+/* Resort Detail Page */
+
+.object-fit-cover {
+    object-fit: cover;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.booking-btn {
+    transition: all 0.3s ease;
+}
+
+.booking-btn:hover {
+    background: linear-gradient(135deg, #198754, #28a745);
+    transform: scale(1.02);
+}
+/* Booking Summary Page */
+
+.pay-btn {
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.pay-btn:hover {
+    background: linear-gradient(135deg, #198754, #28a745);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card {
+    animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Profile Page */
+
+.profile-card {
+    animation: fadeUp 0.5s ease-in-out;
+}
+
+.profile-header {
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+}
+
+.profile-img {
+    object-fit: cover;
+    border: 5px solid #fff;
+}
+
+.profile-info p {
+    padding: 10px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    margin-bottom: 10px;
+}
+
+.btn-gradient {
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    color: #fff;
+    border: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    color: #fff;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Edit Profile Page */
+
+.edit-profile-card {
+    animation: slideUp 0.5s ease-in-out;
+}
+
+.edit-profile-header {
+    background: linear-gradient(135deg, #198754, #20c997);
+}
+
+.section-title {
+    font-weight: 700;
+    color: #198754;
+}
+
+.form-section p {
+    margin-bottom: 1rem;
+}
+
+.form-section input,
+.form-section textarea,
+.form-section select {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+    transition: all 0.3s ease;
+}
+
+.form-section input:focus,
+.form-section textarea:focus,
+.form-section select:focus {
+    border-color: #20c997;
+    box-shadow: 0 0 0 0.2rem rgba(32, 201, 151, 0.25);
+}
+
+.btn-gradient {
+    background: linear-gradient(135deg, #198754, #20c997);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Find Us Page */
+
+.findus-card {
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    border-radius: 18px;
+    transition: all 0.3s ease;
+}
+
+.findus-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.map-card iframe {
+    width: 100%;
+    height: 420px;
+    border: 0;
+}
+
+@media (max-width: 768px) {
+    .map-card iframe {
+        height: 300px;
+    }
+}
+/* Login Page */
+
+.login-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.login-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.login-header {
+    background: linear-gradient(135deg, #198754, #20c997);
+    color: #ffffff;
+    padding: 25px;
+}
+
+.login-header small {
+    opacity: 0.9;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 10px 14px;
+}
+
+.form-control:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+}
+
+.btn-animate {
+    border-radius: 30px;
+    padding: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-animate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(25, 135, 84, 0.4);
+}
+/* Register Page */
+
+.register-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.register-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.register-header {
+    background: linear-gradient(135deg, #198754, #2ecc71);
+    color: #ffffff;
+    padding: 25px;
+}
+
+.register-header small {
+    opacity: 0.9;
+}
+/* Contact Page */
+
+.contact-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background: #dbcccc;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
+}
+
+.contact-header {
+    background: linear-gradient(135deg, #198754, #2ecc71);
+    color: #ffffff;
+    padding: 25px;
+}
+
+.contact-header p {
+    opacity: 0.9;
+}

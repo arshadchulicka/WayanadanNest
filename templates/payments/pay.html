@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>Pay for {{ booking.resort.name }}</h3>
+<p>Amount: ₹{{ booking.total_amount }}</p>
+
+<button id="rzp-button" class="btn btn-success">Pay Now</button>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "{{ razorpay_key }}",
+    "amount": "{{ amount }}",
+    "currency": "INR",
+    "name": "Wayanadan Nest",
+    "description": "Resort Booking Payment",
+    "order_id": "{{ order_id }}",
+
+    "method": {
+        "upi": true,
+        "card": true,
+        "netbanking": true,
+        "wallet": false
+    },
+
+    "handler": function (response){
+        window.location.href =
+            "/payments/success/?payment_id=" + response.razorpay_payment_id +
+            "&order_id=" + response.razorpay_order_id +
+            "&signature=" + response.razorpay_signature;
+    },
+
+    "theme": {
+        "color": "#198754"
+    }
+};
+
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+
+
+{% endblock %}

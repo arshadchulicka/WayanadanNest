@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">🌴 Explore Our Resorts</h2>
+        <p class="text-muted">Luxury stays surrounded by nature</p>
+    </div>
+
+    <div class="row g-4">
+        {% for resort in resorts %}
+        <div class="col-lg-4 col-md-6">
+
+            <div class="card resort-card h-100 border-0">
+
+                <!-- Image -->
+                <div class="position-relative">
+                    <img src="{{ resort.image.url }}"
+                         class="card-img-top resort-img">
+
+                    <span class="discount-badge">
+                        {{ discount }}% OFF
+                    </span>
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body d-flex flex-column">
+
+                    <h5 class="fw-bold">{{ resort.name }}</h5>
+                    <p class="text-muted small mb-2">
+                        <i class="fa-solid fa-location-dot me-1"></i>
+                        {{ resort.location }}
+                    </p>
+
+                    <p class="resort-desc">
+                        {{ resort.description|truncatechars:90 }}
+                    </p>
+
+                    <!-- Price -->
+                    <div class="price-box my-2">
+                        <del class="text-danger small">
+                            ₹{{ resort.price_per_night }}
+                        </del>
+                        <span class="fs-5 fw-bold text-success ms-2">
+                            ₹{{ resort.discounted_price }}
+                        </span>
+                        <span class="small text-muted">/ night</span>
+                    </div>
+
+                    <!-- Rating -->
+                    <div class="mb-3">
+                        {% if resort.avg_rating %}
+                            <span class="rating">
+                                ⭐ {{ resort.avg_rating|floatformat:1 }}/5
+                            </span>
+                        {% else %}
+                            <span class="text-muted small">No ratings yet</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Button -->
+                    <a href="{% url 'resort_detail' resort.id %}"
+                       class="btn btn-success mt-auto w-100">
+                        View Details
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

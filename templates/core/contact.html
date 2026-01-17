@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+
+        <div class="col-lg-6 col-md-8 col-sm-10">
+
+            <div class="card border-0 shadow-lg contact-card">
+
+                <!-- Header -->
+                <div class="card-header text-center contact-header">
+                    <h3 class="fw-bold mb-1">📩 Contact Us</h3>
+                    <p class="mb-0 small">
+                        We'd love to hear from you
+                    </p>
+                </div>
+
+                <!-- Body -->
+                <div class="card-body p-4">
+
+                    {% for message in messages %}
+                        <div class="alert alert-success text-center">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Your Name
+                            </label>
+                            {{ form.name }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Email Address
+                            </label>
+                            {{ form.email }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Message
+                            </label>
+                            {{ form.message }}
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-success w-100 btn-animate">
+                            ✉️ Send Message
+                        </button>
+                    </form>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer text-center bg-light small text-muted">
+                    We usually respond within 24 hours
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

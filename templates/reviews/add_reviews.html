@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container my-5">
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+
+            <div class="card review-card shadow border-0">
+                <div class="card-body p-4">
+
+                    <!-- Header -->
+                    <div class="text-center mb-4">
+                        <h3 class="fw-bold text-success">
+                            ✍️ Review Your Stay
+                        </h3>
+                        <p class="text-muted fs-5">
+                            {{ booking.resort.name }}
+                        </p>
+                    </div>
+
+                    <!-- Review Form -->
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <!-- Rating -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                ⭐ Rating
+                            </label>
+                            <select name="rating" class="form-select rating-select" required>
+                                <option value="5">★★★★★ Excellent</option>
+                                <option value="4">★★★★ Very Good</option>
+                                <option value="3">★★★ Good</option>
+                                <option value="2">★★ Fair</option>
+                                <option value="1">★ Poor</option>
+                            </select>
+                        </div>
+
+                        <!-- Review Text -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                💬 Your Review
+                            </label>
+                            <textarea name="review"
+                                      class="form-control review-textarea"
+                                      rows="4"
+                                      placeholder="Share your experience with us..."
+                                      required></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button class="btn btn-success w-100 review-btn mt-3">
+                            ✅ Submit Review
+                        </button>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Styling -->
+<style>
+.review-card {
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.15);
+}
+
+.rating-select,
+.review-textarea {
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.rating-select:focus,
+.review-textarea:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0.15rem rgba(25, 135, 84, 0.25);
+}
+
+.review-btn {
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.review-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(25,135,84,0.4);
+}
+</style>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container my-5">
+
+    <!-- Page Title -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-success">
+            📍 Find Us
+        </h2>
+        <p class="text-muted">
+            We’d love to welcome you — find us easily on the map
+        </p>
+    </div>
+
+    {% if company %}
+    <div class="row g-4 align-items-stretch">
+
+        <!-- Company Info -->
+        <div class="col-lg-4">
+            <div class="card shadow-lg border-0 h-100 findus-card">
+
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3 text-success">
+                        🏨 Wayanadan Nest
+                    </h5>
+
+                    <p class="mb-3">
+                        <i class="fa-solid fa-location-dot text-danger me-2"></i>
+                        {{ company.address }}, {{ company.city }}, {{ company.state }}
+                    </p>
+
+                    <p class="mb-2">
+                        <i class="fa-solid fa-phone text-success me-2"></i>
+                        {{ company.phone }}
+                    </p>
+
+                    <p class="mb-2">
+                        <i class="fa-solid fa-envelope text-primary me-2"></i>
+                        {{ company.email }}
+                    </p>
+
+                    <hr>
+
+                    <p class="text-muted mb-0">
+                        🌿 Experience comfort, nature & luxury at Wayanadan Nest.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Google Map -->
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0 h-100 map-card">
+                <div class="card-body p-0 rounded overflow-hidden">
+                    {{ company.google_map_embed|safe }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {% else %}
+        <div class="alert alert-warning text-center">
+            Company details not available.
+        </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

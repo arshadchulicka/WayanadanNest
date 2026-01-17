@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden edit-profile-card">
+
+                <!-- Header -->
+                <div class="edit-profile-header text-center py-4">
+                    <h3 class="fw-bold text-white mb-1">
+                        ✨ Edit Profile
+                    </h3>
+                    <p class="text-white-50 mb-0">
+                        Update your personal information
+                    </p>
+                </div>
+
+                <!-- Body -->
+                <div class="card-body p-4 p-md-5">
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <!-- User Info -->
+                        <h5 class="section-title mb-3">
+                            👤 User Information
+                        </h5>
+                        <div class="form-section">
+                            {{ user_form.as_p }}
+                        </div>
+
+                        <hr class="my-4">
+
+                        <!-- Profile Details -->
+                        <h5 class="section-title mb-3">
+                            🏡 Profile Details
+                        </h5>
+                        <div class="form-section">
+                            {{ profile_form.as_p }}
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-gradient btn-lg">
+                                💾 Save Changes
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

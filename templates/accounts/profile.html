@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container my-5">
+
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7 col-sm-10">
+
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden profile-card">
+
+                <!-- Header -->
+                <div class="profile-header text-center p-4">
+                    <img src="{{ user.profile.profile_image.url|default:'/media/profiles/default.png' }}"
+                         class="rounded-circle profile-img shadow mb-3"
+                         width="140"
+                         height="140"
+                         alt="Profile Image">
+
+                    <h4 class="fw-bold text-white mb-1">
+                        {{ user.first_name }} {{ user.last_name }}
+                    </h4>
+
+                    <p class="text-white-50 mb-0">{{ user.email }}</p>
+                </div>
+
+                <!-- Body -->
+                <div class="card-body p-4">
+
+                    <div class="profile-info mb-3">
+                        <p><i class="fa-solid fa-phone me-2 text-primary"></i>
+                            <strong>Phone:</strong>
+                            {{ user.profile.phone|default:"Not provided" }}
+                        </p>
+
+                        <p><i class="fa-solid fa-location-dot me-2 text-danger"></i>
+                            <strong>Address:</strong>
+                            {{ user.profile.address|default:"Not provided" }}
+                        </p>
+
+                        <p><i class="fa-solid fa-city me-2 text-success"></i>
+                            <strong>City:</strong>
+                            {{ user.profile.city|default:"Not provided" }}
+                        </p>
+
+                        <p><i class="fa-solid fa-map me-2 text-warning"></i>
+                            <strong>State:</strong>
+                            {{ user.profile.state|default:"Not provided" }}
+                        </p>
+                    </div>
+
+                    <div class="d-grid">
+                        <a href="{% url 'edit_profile' %}" class="btn btn-gradient btn-lg">
+                            ✏️ Edit Profile
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

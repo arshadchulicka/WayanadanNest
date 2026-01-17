@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container my-5">
+
+    <!-- Header -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-success">
+            💳 Secure Payment
+        </h2>
+        <p class="text-muted fs-5">
+            Complete your booking at <strong>{{ booking.resort.name }}</strong>
+        </p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+
+            <div class="card payment-card shadow border-0">
+                <div class="card-body p-4 text-center">
+
+                    <!-- Resort Info -->
+                    <h4 class="fw-bold mb-2">
+                        🏝 {{ booking.resort.name }}
+                    </h4>
+                    <p class="text-muted mb-3">
+                        📍 {{ booking.resort.location }}
+                    </p>
+
+                    <hr>
+
+                    <!-- Amount -->
+                    <div class="amount-box my-4">
+                        <p class="mb-1 text-muted">Total Amount</p>
+                        <h2 class="fw-bold text-success">
+                            ₹{{ booking.total_amount }}
+                        </h2>
+                    </div>
+
+                    <!-- Trust Badge -->
+                    <div class="alert alert-light border text-start small mb-4">
+                        🔐 <strong>100% Secure Payment</strong><br>
+                        Your transaction is protected and encrypted.
+                    </div>
+
+                    <!-- Payment Form -->
+                    <form method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-success w-100 pay-btn">
+                            ✅ Pay Now (Demo Payment)
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Styling -->
+<style>
+.payment-card {
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.payment-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.15);
+}
+
+.amount-box {
+    background: linear-gradient(135deg, #198754, #28a745);
+    color: white;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.amount-box h2 {
+    margin: 0;
+}
+
+.pay-btn {
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.pay-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(25, 135, 84, 0.4);
+}
+</style>
+
+{% endblock %}
